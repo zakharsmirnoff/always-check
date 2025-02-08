@@ -1,4 +1,7 @@
-on: push
+on:
+  push:
+    branches:
+      - main
 jobs:
   build:
     name: build-app
@@ -14,3 +17,9 @@ jobs:
         run: bun test
       - name: Compile app
         run: bun run build
+      - name: Publish to npm
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          bun publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

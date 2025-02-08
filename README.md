@@ -4,9 +4,14 @@ This is a really tiny package made for one purpose: getting rid of exceptions.
 Instead, just wrap them in a *check()* function, and you will get a *Type | Error*
 
 # Usage
+```bash
+npm install always-check
+```
 Consider a simple fetch request to retrieve some data from an API. You are not sure whether your fetch request will not fail, and even later, you are not sure that you will retrieve json data successfully. So, just check it!
 
 ```typescript
+import {check, checkAsync} from 'always-check'
+
 const url = "https://fakeApi.com"
 const res = await checkAsync(async() => await fetch(url))
 // now res is Response | Error
@@ -20,6 +25,20 @@ const data = await checkAsync(async() => await res.json()) // here res is Respon
 if (data instanceOf Error) {
   console.log(data.message)
   return
+}
+
+// You can also throw from your custom function and check for it:
+
+function divideNumbers(a: number, b: number): number {
+  if (b === 0) {
+    throw new Error("Division by zero is not allowed");
+  }
+  return a / b;
+}
+
+const result = check(divideNumbers, 5, 0)
+if (result instanceOf Error) {
+  console.log(result.message) // will print Error: Division by zero is not allowed
 }
 ```
 
