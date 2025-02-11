@@ -1,6 +1,11 @@
 {
   "name": "always-check",
-  "version": "0.0.3",
+  "version": "0.0.4",
+  "description": "A tiny library for wrapping exceptions and returning them as errors",
+  "license": "Apache-2.0",
+  "repository": {
+    "url": "https://github.com/zakharsmirnoff/always-check"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "index.ts",

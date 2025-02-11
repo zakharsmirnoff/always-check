@@ -18,7 +18,7 @@ const res = await checkAsync(async() => await fetch(url))
 if (res instanceOf Error) {
   // handle the error
   console.log(res.message)
-  console.log(res.cause) // it will be the name of the calling function
+  console.log(res.cause) // it will be the full original error object caught in the catch clause
   return
 }
 const data = await checkAsync(async() => await res.json()) // here res is Response for sure since we checked for the error
