@@ -6,7 +6,7 @@ async function checkAsync<Args extends any[], Type>(
     const result = await fnToCheck(...args);
     return result;
   } catch (e) {
-    return new Error(String(e), { cause: fnToCheck.name });
+    return new Error(String(e), { cause: e });
   }
 }
 
@@ -18,7 +18,7 @@ function check<Args extends any[], Type>(
     const result = fnToCheck(...args);
     return result;
   } catch (e) {
-    return new Error(String(e), { cause: fnToCheck.name });
+    return new Error(String(e), { cause: e });
   }
 }
 
